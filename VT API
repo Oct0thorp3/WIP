@@ -1,0 +1,21 @@
+# This script allows you to request the VirusTotal API to pull information about a specific file, using its hash.
+
+import json
+import requests
+
+# Set API key and URL for VirusTotal API
+API_KEY = "put your key here"
+BASE_URL = "https://www.virustotal.com/api/v3"
+
+# Indicate your desired IOC (can be a file hash or URL)
+IOC = "your hash or URL goes here"
+
+# Makes request for VirusTotal API to grab information about the IOC
+response = requests.get(f"{BASE_URL}/files/{IOC}", headers={"x-apikey": API_KEY})
+
+# You can then parse the JSON response from API
+IOC_info = json.loads(response.text)
+
+# Print your results
+print(f"Results for IOC {IOC}:")
+print(json.dumps(IOC_info, indent=3))
