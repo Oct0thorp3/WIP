@@ -1,0 +1,22 @@
+import json
+import requests
+
+# Set the base URL for the MITRE ATT&CK API
+BASE_URL = "https://api.mitre.org/att&ck/enterprise"
+
+# Set the desired technique ID
+technique_id = "T1059"
+
+# Make a request to the MITRE ATT&CK API to get information about the technique
+response = requests.get(f"{BASE_URL}/techniques/{technique_id}")
+
+# Parse the JSON response from the API
+technique_data = json.loads(response.text)
+
+# Extract the list of IOCs for the technique
+iocs = technique_data["iocs"]
+
+# Print the IOCs
+print(f"IOCs for technique {technique_id}:")
+for ioc in iocs:
+    print(ioc)
